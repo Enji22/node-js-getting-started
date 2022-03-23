@@ -5,9 +5,17 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
+const patient = {
+  name: 'Guy',
+  emergencyContact: 'His Dog',
+  isDiabetic: false,
+  healthInsured: true,
+  age: 25
+}
 
 const express = require('express')
-const path = require('path')
+const path = require('path');
+const res = require('express/lib/response');
 const PORT = process.env.PORT || 5000
 
 express()
@@ -15,6 +23,7 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
+  .get('/emr', (req, res) => res.send(patient))
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect();
