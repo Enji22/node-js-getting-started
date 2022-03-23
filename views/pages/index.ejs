@@ -4,6 +4,13 @@
   <%- include ("../partials/header.ejs") %>
 </head>
 
+<script>
+  function getID() {
+
+  }
+</script>
+
+
 <body>
 
   <%- include ("../partials/nav.ejs") %>
@@ -21,15 +28,19 @@
     <p>This is my personal space</p>
     
     <section>
+
       <form>
-      <button>Get a single record</button> <br>
+      <button onclick="getID">Get a single record</button> <br>
       </form>
-      <form>
-      <button>Get all records</button> <br>
-    </form>
+
+      <form action="http://localhost:5000/emr"></form>
+        <button>Get all records</button> <br>
+      </form>
+
     <form>
       <button>Add a record</button> 
     </form>
+
     </section>
   
   </div>

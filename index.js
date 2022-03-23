@@ -5,13 +5,55 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
-const patient = {
+const patientZero = {
   name: 'Guy',
   emergencyContact: 'His Dog',
   isDiabetic: false,
   healthInsured: true,
-  age: 25
-}
+  age: 25,
+  ID: 0
+};
+
+
+  const patientList = [
+      {
+        name: 'Guy',
+        emergencyContact: 'His Dog',
+        isDiabetic: false,
+        healthInsured: true,
+        age: 25,
+        ID: 4
+      },
+
+      {
+        name: 'Dude',
+        emergencyContact: 'His gerbil',
+        isDiabetic: false,
+        healthInsured: true,
+        age: 60,
+        ID: 1
+      },
+
+      {
+        name: 'Girl',
+        emergencyContact: 'Her hot chips',
+        isDiabetic: false,
+        healthInsured: true,
+        age: 22,
+        ID: 2
+      },
+
+      {
+        name: 'Man',
+        emergencyContact: 'His lizard',
+        isDiabetic: True,
+        healthInsured: false,
+        age: 38,
+        ID: 3
+      },
+      
+    ]
+
 
 const express = require('express')
 const path = require('path');
@@ -23,7 +65,8 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/emr', (req, res) => res.send(patient))
+  .get('/emr', (req, res) => res.send(patientList))
+  .get('/emr/id')
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect();
