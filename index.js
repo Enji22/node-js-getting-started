@@ -16,14 +16,6 @@ const patientZero = {
 
 
   let patientList = [
-      {
-        name: 'Guy',
-        emergencyContact: 'His Dog',
-        isDiabetic: false,
-        healthInsured: true,
-        age: 25,
-        ID: 4
-      },
 
       {
         name: 'Dude',
@@ -31,7 +23,7 @@ const patientZero = {
         isDiabetic: false,
         healthInsured: true,
         age: 60,
-        ID: 1
+        ID: 0
       },
 
       {
@@ -40,7 +32,7 @@ const patientZero = {
         isDiabetic: false,
         healthInsured: true,
         age: 22,
-        ID: 2
+        ID: 1
       },
 
       {
@@ -49,7 +41,7 @@ const patientZero = {
         isDiabetic: true,
         healthInsured: false,
         age: 38,
-        ID: 3
+        ID: 2
       }
       
     ]
@@ -66,9 +58,9 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/emr/', (req, res) => res.send(patientList[0]))
   .get('/emr/', (req, res) => res.send(patientList))
-  .get('/emr/id', (req, res) => res.send(patientZero))
+  //.get('/emr/', (req, res) => res.send(patientList))
+  .get('/emr/id', (req, res) => res.send(patientList[2]))
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect();
