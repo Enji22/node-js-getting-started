@@ -15,7 +15,7 @@ const patientZero = {
 };
 
 
-  const patientList = [
+  let patientList = [
       {
         name: 'Guy',
         emergencyContact: 'His Dog',
@@ -46,11 +46,11 @@ const patientZero = {
       {
         name: 'Man',
         emergencyContact: 'His lizard',
-        isDiabetic: True,
+        isDiabetic: true,
         healthInsured: false,
         age: 38,
         ID: 3
-      },
+      }
       
     ]
 
@@ -58,6 +58,7 @@ const patientZero = {
 const express = require('express')
 const path = require('path');
 const res = require('express/lib/response');
+const req = require('express/lib/request');
 const PORT = process.env.PORT || 5000
 
 express()
@@ -65,8 +66,9 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/emr', (req, res) => res.send(patientList))
-  .get('/emr/id')
+  .get('/emr/', (req, res) => res.send(patientList[0]))
+  .get('/emr/', (req, res) => res.send(patientList[1]))
+  .get('/emr/id', (req, res) => res.send())
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect();
