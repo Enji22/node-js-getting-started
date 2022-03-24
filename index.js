@@ -67,8 +67,8 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/emr/', (req, res) => res.send(patientList[0]))
-  .get('/emr/', (req, res) => res.send(patientList[1]))
-  .get('/emr/id', (req, res) => res.send())
+  .get('/emr/', (req, res) => res.send(patientList))
+  .get('/emr/id', (req, res) => res.send(patientZero))
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect();
