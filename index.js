@@ -61,27 +61,9 @@ express()
   .get('/emr/', (req, res) => res.send(patientList))
   //.get('/emr/', (req, res) => res.send(patientList))
   .get('/emr/id', (req, res) => res.send(patientList[2]))
-  .get('/db', async (req, res) => {
-    try {
-      const client = await pool.connect();
-      const result = await client.query('SELECT * FROM test_table');
-      const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/db', results );
-      client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
-  })
-  .get('/times', (req, res) => res.send(showTimes()))
+  
+ 
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
-  showTimes = () => {
-    let result = '';
-    const times = process.env.TIMES || 5;
-    for (i = 0; i < times; i++) {
-      result += i + ' ';
-    }
-    return result;
-  }
+  
